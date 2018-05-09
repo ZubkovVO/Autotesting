@@ -1,5 +1,8 @@
 package zubkov.appliances.exceptions;
 
+/**
+ * Когда при подключении устройства будет превышен порог мощности, сработает исключение
+ */
 public class OverPowerException extends Exception{
 
     public OverPowerException() {

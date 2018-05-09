@@ -2,6 +2,7 @@ package zubkov.appliances;
 
 import zubkov.appliances.exceptions.NoApplianceFoundException;
 import zubkov.appliances.exceptions.OverPowerException;
+import zubkov.appliances.file.FileHandler;
 import zubkov.appliances.model.Fridge;
 import zubkov.appliances.model.HomeAppliance;
 import zubkov.appliances.model.Kettle;
@@ -24,6 +25,7 @@ public class App
         apartment.addAppl(oven1);
         apartment.addAppl(fridge);
         apartment.addAppl(kettle);
+        FileHandler.createFile("appliances.txt",apartment.getApplianceList());
         apartment.applList();
         System.out.println();
         apartment.sortAppl();

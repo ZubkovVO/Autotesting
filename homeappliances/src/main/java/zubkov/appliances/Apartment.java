@@ -81,4 +81,8 @@ public class Apartment {
             System.out.println(e.getMessage());
         }
     }
+
+    public List<HomeAppliance> getApplianceList(){
+        return applianceList;
+    }
 }
