@@ -8,6 +8,8 @@ import zubkov.appliances.model.HomeAppliance;
 import zubkov.appliances.model.Kettle;
 import zubkov.appliances.model.Oven;
 
+import java.util.List;
+
 /**
  * Hello world!
  *
@@ -95,6 +97,10 @@ public class App
             kettle3.setWatt(Integer.valueOf(stringPower));
         } catch (NumberFormatException e){
             System.out.println(e.getMessage());
+        }
+        List<HomeAppliance> applianceFromFile=FileHandler.readFromFile("appliances.txt");
+        for (HomeAppliance appliance : applianceFromFile) {
+            System.out.println(appliance.toString());
         }
     }
 }

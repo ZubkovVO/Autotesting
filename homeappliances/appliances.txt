@@ -1,0 +1,4 @@
+1000;medium;Bosh6572
+5000;large;BoshXL
+600;large;AristonCool231
+400;small;Bosh1001
