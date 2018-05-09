@@ -9,4 +9,9 @@ public class Kettle extends HomeAppliance {
 
         return this.getClass().getSimpleName();
     }
+    @Override
+    public void goSleep() {
+        throw new UnsupportedOperationException("Чайники не спят");
+    }
+
 }

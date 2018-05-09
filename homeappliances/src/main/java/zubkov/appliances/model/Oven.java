@@ -10,4 +10,9 @@ public class Oven extends HomeAppliance {
         return this.getClass().getSimpleName();
     }
 
+    @Override
+    public void goSleep() {
+        System.out.println("zzzzz");
+    }
+
 }

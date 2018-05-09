@@ -1,6 +1,8 @@
 package zubkov.appliances;
 
+import zubkov.appliances.exceptions.PlugException;
+
 public interface Pluggable {
-    void plugIn();
-    void plugOut();
+    void plugIn() throws PlugException;
+    void plugOut() throws PlugException;
 }

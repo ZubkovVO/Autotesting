@@ -1,6 +1,7 @@
 package zubkov.appliances.model;
 
 import zubkov.appliances.Pluggable;
+import zubkov.appliances.exceptions.PlugException;
 
 import java.util.Objects;
 
@@ -22,8 +23,12 @@ public abstract class HomeAppliance implements Pluggable, Comparable<HomeApplian
     }
 
     public void setWatt(int watt) {
+        if (watt <=0){
+            throw new IllegalArgumentException("Мощность должна быть больше 0");
+        }
         this.watt = watt;
     }
+
 
     public String getSize() {
         return size;
@@ -69,12 +74,18 @@ public abstract class HomeAppliance implements Pluggable, Comparable<HomeApplian
     }
 
     @Override
-    public void plugIn() {
+    public void plugIn() throws PlugException {
+        if (isPluggedIn()){
+            throw new PlugException("Прибор уже включен");
+        }
         this.pluggedIn=true;
     }
 
     @Override
-    public void plugOut() {
+    public void plugOut() throws PlugException {
+        if (!isPluggedIn()) {
+            throw new PlugException("Прибор уже выключен");
+        }
         this.pluggedIn=false;
     }
 
@@ -93,4 +104,6 @@ public abstract class HomeAppliance implements Pluggable, Comparable<HomeApplian
 
         return Objects.hash(watt, size, model);
     }
+
+    public abstract void goSleep();
 }

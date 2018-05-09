@@ -1,5 +1,8 @@
 package zubkov.appliances;
 
+import zubkov.appliances.exceptions.NoApplianceFoundException;
+import zubkov.appliances.exceptions.OverPowerException;
+import zubkov.appliances.exceptions.PlugException;
 import zubkov.appliances.model.HomeAppliance;
 
 import java.util.ArrayList;
@@ -8,6 +11,8 @@ import java.util.List;
 
 public class Apartment {
 
+    private static final int POWER_LIMIT=5000;
+
     private List<HomeAppliance> applianceList = new ArrayList<>();
 
     public void addAppl(HomeAppliance homeAppliance) {
@@ -15,6 +20,9 @@ public class Apartment {
     }
 
     public void clearApartment() {
+        if (applianceList.isEmpty()){
+            throw new IllegalStateException("Квартира уже пуста, только чайник спит");
+        }
         applianceList.clear();
     }
 
@@ -37,14 +45,16 @@ public class Apartment {
         }
     }
 
-    public void searchBySize (String size) {
+    public void searchBySize (String size) throws NoApplianceFoundException {
         List<HomeAppliance> result = new ArrayList<>();
         for (HomeAppliance appliance : applianceList){
             if (appliance.getSize().equals(size)){
                 result.add(appliance);
             }
         }
-
+        if (result.isEmpty()){
+            throw new NoApplianceFoundException("Приборов не найдено");
+        }
         System.out.println("Результат поиска: ");
         applList(result);
     }
@@ -58,5 +68,17 @@ public class Apartment {
              }
         }
         return sum;
+    }
+
+    public void plugInAppliance(HomeAppliance appliance) throws OverPowerException {
+        int wattSum = wattCount()+appliance.getWatt();
+        if (wattSum > POWER_LIMIT && !appliance.isPluggedIn()) {
+            throw new OverPowerException("Включение еще одного прибора представляет опасность для электросети");
+        }
+        try {
+            appliance.plugIn();
+        } catch (PlugException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

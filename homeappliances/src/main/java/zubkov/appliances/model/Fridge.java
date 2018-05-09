@@ -8,4 +8,9 @@ public class Fridge extends HomeAppliance {
     String getType() {
         return this.getClass().getSimpleName();
     }
+    @Override
+    public void goSleep() {
+        System.out.println("zzzzz");
+    }
+
 }
