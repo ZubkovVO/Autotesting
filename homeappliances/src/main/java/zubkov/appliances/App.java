@@ -1,5 +1,6 @@
 package zubkov.appliances;
 
+import zubkov.appliances.database.DBConnectTest;
 import zubkov.appliances.exceptions.NoApplianceFoundException;
 import zubkov.appliances.exceptions.OverPowerException;
 import zubkov.appliances.file.FileHandler;
@@ -18,6 +19,7 @@ public class App
 {
     public static void main( String[] args )
     {
+        DBConnectTest connect = new DBConnectTest();
         Apartment apartment = new Apartment();
         HomeAppliance oven = new Oven(1000, "medium","Bosh6572");
         HomeAppliance oven1 = new Oven(5000, "large","BoshXL");
@@ -102,5 +104,6 @@ public class App
         for (HomeAppliance appliance : applianceFromFile) {
             System.out.println(appliance.toString());
         }
+        connect.getData();
     }
 }
